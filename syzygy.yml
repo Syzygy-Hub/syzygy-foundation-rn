@@ -1,0 +1,10 @@
+# Syzygy Repository Manifest
+# Schema: https://github.com/Syzygy-Hub/.github/blob/main/engineering/standards/repository-standard.md
+
+name: syzygy-foundation-rn
+type: foundation
+platform: rn
+language: typescript
+package_manager: npm
+license: MIT
+version: 1.0.0
