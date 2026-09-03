@@ -19,5 +19,5 @@ export const SyzygyVersion = {
     if (a.minor !== b.minor) return a.minor - b.minor;
     return a.patch - b.patch;
   },
-  current: { major: 1, minor: 0, patch: 0 } as SyzygyVersion,
+  current: { major: 1, minor: 1, patch: 0 } as SyzygyVersion,
 };

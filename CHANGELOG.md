@@ -8,6 +8,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Fixed
+
+---
+
+## [1.1.0] — 2026-09-03
+
+### Changed
+- Ecosystem repositioned as AI-enabled cross-platform engineering framework for mobile, web and enterprise
+- CI workflow refactored — inline release job removed, release now handled by org-level tag-push workflow
+- Lint configuration migrated to `Syzygy-Hub/.github/engineering/tooling/`
+- Lint step reordered to run before build and test
+- README updated with ecosystem architecture, shared contracts documentation, and release process
+
+### Added
+- `syzygy.yml` confirmed as canonical version source of truth
+- Shared contracts section documenting `NetworkClientProtocol`, `AuthProvider`, `StorageProvider`, `LoggerProtocol`
+
 ---
 
 ## [1.0.0] - 2026-08-06
@@ -83,5 +104,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - `tooling/rn/.eslintrc.json` updated with documentation-only comment header
 - README rewritten to Syzygy engineering standard
 
-[Unreleased]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases/tag/1.0.0
