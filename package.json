@@ -2,8 +2,17 @@
   "name": "syzygy-foundation-rn",
   "version": "1.1.0",
   "description": "Foundational contracts, primitives, and shared types for the Syzygy React Native ecosystem",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syzygy-Hub/syzygy-foundation-rn.git"
+  },
+  "homepage": "https://github.com/Syzygy-Hub/syzygy-foundation-rn#readme",
+  "bugs": {
+    "url": "https://github.com/Syzygy-Hub/syzygy-foundation-rn/issues"
+  },
   "exports": {
     ".": "./dist/index.js",
     "./testing": "./dist/testing.js"
