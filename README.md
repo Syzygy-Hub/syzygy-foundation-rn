@@ -1,17 +1,47 @@
-[![React Native](https://img.shields.io/badge/React%20Native-TypeScript-7F77DD?style=flat)](https://reactnative.dev/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-1D9E75?logo=typescript&logoColor=white&style=flat)](https://typescriptlang.org) [![CI](https://img.shields.io/github/actions/workflow/status/Syzygy-Hub/syzygy-foundation-rn/ci.yml?label=ci&style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/actions/workflows/ci.yml) [![Version](https://img.shields.io/badge/version-1.0.0-D85A30?style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases) [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+[![React Native](https://img.shields.io/badge/React%20Native-TypeScript-7F77DD?style=flat)](https://reactnative.dev/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-1D9E75?logo=typescript&logoColor=white&style=flat)](https://typescriptlang.org) [![CI](https://img.shields.io/github/actions/workflow/status/Syzygy-Hub/syzygy-foundation-rn/ci.yml?label=ci&style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/actions/workflows/ci.yml) [![Version](https://img.shields.io/badge/version-1.1.0-D85A30?style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases) [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Syzygy-Hub/.github/main/brand/syzygy-banner-dark-1200.png">
-  <img src="https://raw.githubusercontent.com/Syzygy-Hub/.github/main/brand/syzygy-banner-light-1200.png" alt="Syzygy" width="600">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Syzygy-Hub/.github/main/brand/assets/banners/syzygy-banner-dark-1200.png">
+  <img src="https://raw.githubusercontent.com/Syzygy-Hub/.github/main/brand/assets/banners/syzygy-banner-light-1200.png" alt="Syzygy" width="600">
 </picture>
 
 # syzygy-foundation-rn
 
-Contracts, primitives, and shared types for the React Native Syzygy ecosystem — zero implementation, zero dependencies.
+The root layer of the Syzygy ecosystem — providing SharedTypes, base protocols, and shared contracts that every peer layer builds on.
 
 ## About
 
 syzygy-foundation-rn is the base layer every other Syzygy React Native library depends on. It defines the interfaces that Services implements, the value types that UI and Core consume, and the error types the whole stack shares. Nothing in Foundation has behaviour beyond property storage — no network calls, no platform APIs, no business logic. Swap any implementation in Services or Core by conforming to these contracts; Foundation never needs to change.
+
+## Role in the Syzygy Ecosystem
+
+`syzygy-foundation-rn` is the root layer — the only dependency shared by all peer layers. It depends on nothing. Every peer layer (UI, Core, Services, AI) depends on Foundation and nothing else.
+
+Full ecosystem architecture: [ecosystem-fragment.md](https://github.com/Syzygy-Hub/.github/blob/main/docs/ecosystem-fragment.md)
+
+### Shared Contracts
+
+Foundation defines the shared contracts that all peer layers consume. These contracts are the abstraction layer that allows UI, Core, Services and AI to each depend on Foundation without depending on each other.
+
+- **`NetworkClientProtocol`** — abstracts HTTP networking so any peer layer can make network requests without depending on a concrete implementation. `syzygy-services-rn` provides the concrete Axios implementation.
+- **`AuthProvider`** — abstracts authentication and token management. `syzygy-services-rn` provides the concrete OAuth and SecureStorage implementations.
+- **`StorageProvider`** — abstracts local persistence. `syzygy-services-rn` provides the concrete SecureStorage implementation.
+- **`LoggerProtocol`** — abstracts logging and observability so all peer layers can log without depending on a specific logging framework.
+
+> These contracts are currently defined as planned interfaces. Concrete implementations will ship with `syzygy-services-rn` in Phase 2 of the ecosystem roadmap.
+
+## Release Process
+
+Releases follow the Syzygy tag-push release flow:
+
+1. Create a `release/X.X.X` branch
+2. Bump the version in `syzygy.yml`, `package.json`, the README badge, and `CHANGELOG.md`
+3. Open a PR to `main` and wait for CI to pass
+4. Merge the PR
+5. Push the tag: `git tag X.X.X` and `git push origin X.X.X`
+6. The tag push triggers the org-level release workflow which validates `syzygy.yml` matches the tag, extracts the CHANGELOG entry, publishes to npm, and creates the GitHub Release
+
+For the full release standard see the [Syzygy-Hub/.github release standard](https://github.com/Syzygy-Hub/.github/blob/main/engineering/standards/release-standard.md).
 
 ## Platforms
 
@@ -48,7 +78,7 @@ SyzygyFoundation exposes two entry points:
 
 **Depends on:** nothing
 
-**Used by:** syzygy-ui-rn, syzygy-core-rn, syzygy-services-rn
+**Used by:** syzygy-ui-rn, syzygy-core-rn, syzygy-services-rn, syzygy-ai-rn
 
 For the full ecosystem architecture see [syzygy-ecosystem.md](https://github.com/Syzygy-Hub/.github/blob/main/engineering/architecture/syzygy-ecosystem.md).
 
@@ -160,19 +190,6 @@ Contributions are welcome. Please follow the [Syzygy engineering standards](http
 | `npm run test` | Run Jest tests |
 
 > `prepare` and `prebuild` are lifecycle hooks that run automatically — no need to call them directly.
-
-## Releases
-
-Releases follow the Syzygy commit-message flow:
-
-1. Create branch `release/X.X.X`
-2. Bump version in manifest and `syzygy.yml`
-3. Update `CHANGELOG.md`
-4. Open PR → `main`
-5. Get approval and merge with commit message starting with **`release:`** (e.g. `release: 1.0.0`)
-6. CI detects the `release:` prefix → reads version from `syzygy.yml` → creates git tag and GitHub Release automatically
-
-See the [Syzygy Release Standard](https://github.com/Syzygy-Hub/.github/blob/main/engineering/standards/release-standard.md) for full details.
 
 ## License
 
