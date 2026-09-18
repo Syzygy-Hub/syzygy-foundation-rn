@@ -16,6 +16,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ---
 
+## [1.2.0] - 2026-09-18
+
+### Changed
+- CI: aligned Node version to 20 in release workflow (publish job was previously using Node 24)
+
+---
+
 ## [1.1.0] — 2026-09-03
 
 ### Changed
@@ -104,6 +111,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - `tooling/rn/.eslintrc.json` updated with documentation-only comment header
 - README rewritten to Syzygy engineering standard
 
-[Unreleased]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases/tag/1.0.0
