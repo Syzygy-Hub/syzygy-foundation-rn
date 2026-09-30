@@ -9,9 +9,7 @@ export class MockAuthProvider implements AuthProvider {
 
   refreshCallCount = 0;
   signOutCallCount = 0;
-  refreshResult:
-    | { success: true; token: AuthToken }
-    | { success: false; error: Error } = {
+  refreshResult: { success: true; token: AuthToken } | { success: false; error: Error } = {
     success: true,
     token: Fixtures.authToken(),
   };
