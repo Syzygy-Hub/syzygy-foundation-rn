@@ -32,4 +32,6 @@ export class MockConnectivityProvider implements ConnectivityProvider {
       this.listeners = this.listeners.filter((l) => l !== listener);
     };
   }
+
+  dispose(): void {}
 }

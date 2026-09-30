@@ -43,4 +43,16 @@ export class MockAuthProvider implements AuthProvider {
     this._state = AS.unauthenticated();
     this.listeners.forEach((l) => l(this._state));
   }
+
+  canUseBiometric(): boolean {
+    return false;
+  }
+
+  authenticateWithBiometric(_reason: string): Promise<boolean> {
+    return Promise.resolve(false);
+  }
+
+  refreshToken(): Promise<boolean> {
+    return Promise.resolve(false);
+  }
 }

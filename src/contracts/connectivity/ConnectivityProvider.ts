@@ -11,4 +11,6 @@ export interface ConnectivityProvider {
   readonly state: ConnectivityState;
   readonly isConnected: boolean;
   subscribe(listener: ConnectivityStateListener): () => void;
+  /** Releases any resources held by this provider (listeners, timers, subscriptions). */
+  dispose(): void;
 }
