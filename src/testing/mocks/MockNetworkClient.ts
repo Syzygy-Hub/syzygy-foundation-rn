@@ -14,4 +14,6 @@ export class MockNetworkClient implements NetworkClientProtocol {
     if (!response) throw new Error('MockNetworkClient: no response queued');
     return response;
   }
+
+  dispose(): void {}
 }

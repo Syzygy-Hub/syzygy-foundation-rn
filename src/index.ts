@@ -31,6 +31,7 @@ export * from './sharedtypes/SyzygyEnvironment';
 export * from './sharedtypes/SyzygyConfiguration';
 export * from './sharedtypes/SyzygyBuildInfo';
 export * from './sharedtypes/SyzygyVersion';
+export * from './sharedtypes/SyzygyFoundationError';
 
 // Errors
 export * from './errors/SyzygyErrorSeverity';

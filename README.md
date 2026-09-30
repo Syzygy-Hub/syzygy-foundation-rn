@@ -1,4 +1,4 @@
-[![React Native](https://img.shields.io/badge/React%20Native-TypeScript-7F77DD?style=flat)](https://reactnative.dev/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-1D9E75?logo=typescript&logoColor=white&style=flat)](https://typescriptlang.org) [![CI](https://img.shields.io/github/actions/workflow/status/Syzygy-Hub/syzygy-foundation-rn/ci.yml?label=ci&style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/actions/workflows/ci.yml) [![Version](https://img.shields.io/badge/version-1.2.0-D85A30?style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases) [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+[![React Native](https://img.shields.io/badge/React%20Native-TypeScript-7F77DD?style=flat)](https://reactnative.dev/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-1D9E75?logo=typescript&logoColor=white&style=flat)](https://typescriptlang.org) [![CI](https://img.shields.io/github/actions/workflow/status/Syzygy-Hub/syzygy-foundation-rn/ci.yml?label=ci&style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/actions/workflows/ci.yml) [![Version](https://img.shields.io/badge/version-2.0.0-D85A30?style=flat)](https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases) [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Syzygy-Hub/.github/main/brand/assets/banners/syzygy-banner-dark-1200.png">
@@ -29,6 +29,13 @@ Foundation defines the shared contracts that all peer layers consume. These cont
 - **`LoggerProtocol`** — abstracts logging and observability so all peer layers can log without depending on a specific logging framework.
 
 > These contracts are currently defined as planned interfaces. Concrete implementations will ship with `syzygy-services-rn` in Phase 2 of the ecosystem roadmap.
+
+## Breaking Changes in v2.0.0
+
+- `NetworkClientProtocol` now requires `dispose(): void` — all implementations must add this method.
+- `ConnectivityProvider` now requires `dispose(): void` — all implementations must add this method.
+- `AuthProvider` now requires `refreshToken(): Promise<boolean>` — all implementations must add this method.
+- `SyzygyFoundationError` is the new typed error class for Foundation-layer errors; consumer error-handling code should check `instanceof SyzygyFoundationError` and inspect `.code`.
 
 ## Release Process
 
@@ -93,12 +100,15 @@ For the full ecosystem architecture see [syzygy-ecosystem.md](https://github.com
 
 ### Contracts
 
-- `NetworkClientProtocol` / `NetworkRequest` / `NetworkResponse` — networking contract
+- `NetworkClientProtocol` — `execute(request): Promise<NetworkResponse>`, `dispose(): void`
+- `NetworkRequest` / `NetworkResponse` — networking value types
 - `StorageProvider` / `StorageKey` — type-safe storage contract
-- `AuthProvider` / `AuthToken` / `AuthState` — authentication contract
+- `AuthProvider` — `subscribe`, `authenticate`, `refresh`, `signOut`, `canUseBiometric(): boolean`, `authenticateWithBiometric(reason: string): Promise<boolean>`, `refreshToken(): Promise<boolean>`
+- `AuthToken` / `AuthState` — authentication value types
 - `AnalyticsProvider` / `AnalyticsEvent` — analytics contract
 - `LoggerProtocol` / `LogLevel` / `LogEntry` — logging contract
-- `ConnectivityProvider` / `ConnectivityState` — connectivity contract
+- `ConnectivityProvider` — `state`, `isConnected`, `subscribe`, `dispose(): void`
+- `ConnectivityState` — connectivity state type
 
 ### Shared Types
 
@@ -112,6 +122,7 @@ For the full ecosystem architecture see [syzygy-ecosystem.md](https://github.com
 - `SyzygyError` — base error interface
 - `SyzygyErrorCode` — typed, extensible error codes
 - `SyzygyErrorSeverity` — error severity levels
+- `SyzygyFoundationError` — typed error class with `code: SyzygyFoundationErrorCode` and optional `underlying?: Error`. Error codes: `'network' | 'authentication' | 'not_found' | 'timeout' | 'cancelled' | 'unknown'`
 
 ### Testing Support
 

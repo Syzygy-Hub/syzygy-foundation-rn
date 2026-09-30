@@ -16,6 +16,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ---
 
+## [2.0.0] - 2026-09-29
+
+### Added
+- `dispose(): void` added to `NetworkClientProtocol` — cancels in-flight requests and releases resources held by the client.
+- `dispose(): void` added to `ConnectivityProvider` — releases listeners, timers, and subscriptions held by the provider.
+- `canUseBiometric(): boolean` added to `AuthProvider` — returns true if biometric authentication is available and enrolled on the device.
+- `authenticateWithBiometric(reason: string): Promise<boolean>` added to `AuthProvider` — triggers the system biometric prompt; resolves to true on success, false on failure or cancellation.
+- `refreshToken(): Promise<boolean>` added to `AuthProvider` — attempts to refresh the current auth token; resolves to true on success, false on failure.
+- `SyzygyFoundationError` — typed error class with `code: SyzygyFoundationErrorCode` and optional `underlying?: Error`. Codes: `'network' | 'authentication' | 'not_found' | 'timeout' | 'cancelled' | 'unknown'`.
+- `MockNetworkClient` updated to implement `dispose()`.
+- `MockConnectivityProvider` updated to implement `dispose()`.
+- `MockAuthProvider` updated to implement `canUseBiometric()`, `authenticateWithBiometric()`, and `refreshToken()`.
+
+### Breaking Changes
+- `NetworkClientProtocol` now requires `dispose(): void` — all concrete implementations must add this method.
+- `ConnectivityProvider` now requires `dispose(): void` — all concrete implementations must add this method.
+- `AuthProvider` now requires `refreshToken(): Promise<boolean>` — all concrete implementations must add this method.
+- `SyzygyFoundationError` is exported from the main entry point; consumers should use it for Foundation-layer error handling.
+
+---
+
 ## [1.2.0] - 2026-09-18
 
 ### Changed
