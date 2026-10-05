@@ -8,11 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
-### Added
+## [3.0.0] - 2026-10-01
 
 ### Changed
-
-### Fixed
+- CI migrated from inline workflow to Syzygy-Hub reusable workflow (`rn-ci.yml`)
 
 ---
 
@@ -132,7 +131,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - `tooling/rn/.eslintrc.json` updated with documentation-only comment header
 - README rewritten to Syzygy engineering standard
 
-[Unreleased]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/2.0.0...3.0.0
+[2.0.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/Syzygy-Hub/syzygy-foundation-rn/releases/tag/1.0.0
